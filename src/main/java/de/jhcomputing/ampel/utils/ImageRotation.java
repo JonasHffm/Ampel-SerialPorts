@@ -9,9 +9,9 @@ import java.io.File;
 // Rotates an image 90 degrees clockwise/counter clockwise using AffineTransform in Java
 // Preserves the full image.
 public class ImageRotation {
-    private static final String PATH_TO_IMAGE="img/";
-    private static final String INPUT_FILE_NAME="Car3.png";
-    private static final String OUTPUT_FILE_NAME = "Car4.png";
+    private static final String PATH_TO_IMAGE="";
+    private static final String INPUT_FILE_NAME="AmpelDefault.png";
+    private static final String OUTPUT_FILE_NAME = "AmpelDefault.png";
      
     public static void main(String[] args ) throws Exception{
         ImageRotation demo = new ImageRotation();
@@ -26,7 +26,7 @@ public class ImageRotation {
         AffineTransformOp op = new AffineTransformOp(rotateCounterClockwise90(source), AffineTransformOp.TYPE_BILINEAR);
         op.filter(source, output);
  
-        ImageIO.write(output, "png", new File(PATH_TO_IMAGE+OUTPUT_FILE_NAME));
+        ImageIO.write(output, "png", new File(OUTPUT_FILE_NAME));
          
     }
      

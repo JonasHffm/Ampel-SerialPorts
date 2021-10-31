@@ -1,5 +1,6 @@
 package de.jhcomputing.ampel.utils;
 
+import de.jhcomputing.ampel.obj.Lane;
 import de.jhcomputing.ampel.window.MainWindow;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,11 +13,6 @@ public class Data {
 
     public Data() {
         this.mainWindow = new MainWindow();
-        this.initLanes();
-    }
-
-    public void initLanes() {
-
     }
 
 }

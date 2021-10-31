@@ -17,7 +17,7 @@ public class Car {
     private java.util.Timer timer;
     private int default_X, default_Y;
 
-    private final int speed = 10;
+    private final int speed = 6;
 
     public Car(JFrame frame, String dir, int xLoc, int yLoc) {
         this.carImage = new JLabel();
@@ -106,6 +106,8 @@ public class Car {
         carImage.setBounds(this.default_X, this.default_Y, carImage.getWidth(), carImage.getHeight());
         carImage.repaint();
     }
+
+
 
     public void stop() {
         this.moving = false;
