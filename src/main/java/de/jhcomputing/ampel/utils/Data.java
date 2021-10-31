@@ -12,5 +12,11 @@ public class Data {
 
     public Data() {
         this.mainWindow = new MainWindow();
+        this.initLanes();
     }
+
+    public void initLanes() {
+
+    }
+
 }

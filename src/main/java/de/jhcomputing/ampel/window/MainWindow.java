@@ -20,17 +20,18 @@ public class MainWindow {
 
     public MainWindow() {
         this.frame = new JFrame("Ampel - SerialPorts");
+        this.frame.setSize(600, 600);
 
-        addElements();
         carManager = new CarManager(this.frame);
         carManager.spawn();
+        carManager.movement();
+        addElements();
 
-        this.frame.setSize(600, 600);
+
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.frame.setResizable(false);
-        this.frame.setVisible(true);
 
-        carManager.movement();
+        this.frame.setVisible(true);
     }
 
     public void addElements() {
@@ -44,5 +45,10 @@ public class MainWindow {
         this.frame.add(background);
     }
 
+    public void repaintWindow() {
+        frame.repaint();
+        addElements();
+        this.frame.setVisible(true);
+    }
 
 }
