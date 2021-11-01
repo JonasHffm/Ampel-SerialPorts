@@ -63,7 +63,7 @@ public class Trafficlight {
                 main_part.setSize(200, 200);
                 main_part.setVisible(true);
 
-                red_light.setLocation((locX+5), (locY+22));
+                red_light.setLocation((locX+5), (locY+23));
                 green_light.setLocation((locX+45), (locY+42));
                 yellow_light.setLocation((locX+25), (locY+2));
 
