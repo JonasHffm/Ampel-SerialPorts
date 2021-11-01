@@ -1,5 +1,6 @@
 package de.jhcomputing.ampel.window;
 
+import de.jhcomputing.ampel.autonom.AutonomExmaple;
 import de.jhcomputing.ampel.main.Ampel;
 import de.jhcomputing.ampel.obj.Car;
 import de.jhcomputing.ampel.obj.Lane;
@@ -10,6 +11,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @Getter
 @Setter
@@ -43,7 +46,29 @@ public class MainWindow {
         background.setSize(frame.getHeight(), frame.getWidth());
         background.setVisible(true);
 
+        JButton activateAuto = new JButton();
+        activateAuto.setBounds(4, 4, 100, 25);
+        activateAuto.setText("Auto");
+        activateAuto.addActionListener(e -> {
+            if(!AutonomExmaple.autoActive) {
+                Ampel.data.setAutonomExmaple(new AutonomExmaple());
+                Data.automationActive = true;
+                JOptionPane.showMessageDialog(frame, "Autonomer Modus aktiviert!");
+            }else {
+                JOptionPane.showMessageDialog(frame, "Autonomer Modus ist bereits aktiv!");
+            }
+        });
 
+        JButton activateSerial = new JButton();
+        activateSerial.setBounds(4, 35, 100, 25);
+        activateSerial.setText("Serial");
+        activateSerial.addActionListener(e -> {
+            Data.automationActive = false;
+            JOptionPane.showMessageDialog(frame, "Serial-Modus wird in Kürze aktiviert (max. 15 Sekunden)!");
+        });
+
+        this.frame.add(activateAuto);
+        this.frame.add(activateSerial);
         this.frame.add(background);
     }
 

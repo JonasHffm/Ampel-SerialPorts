@@ -14,6 +14,7 @@ import java.util.Map;
 public class Data {
 
     public static Map<String, Lane> laneMap = new HashMap<>();
+    public static boolean automationActive = true;
 
     private MainWindow mainWindow;
     private AutonomExmaple autonomExmaple;
