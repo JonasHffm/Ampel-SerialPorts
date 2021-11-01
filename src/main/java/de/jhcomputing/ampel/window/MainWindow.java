@@ -47,18 +47,23 @@ public class MainWindow {
         this.frame.add(background);
     }
 
-    public void repaintWindow() {
-        frame.repaint();
-        addElements();
-        this.frame.setVisible(true);
-    }
-
     public void initLanes() {
-        Lane lane1 = new Lane(frame, LaneType.RIGHT_LEFT_LEFT);
-        Lane lane2 = new Lane(frame, LaneType.RIGH_LEFT_RIGHT);
-        Lane lane3 = new Lane(frame, LaneType.TOPBOTTOM_RIGHT);
-        Lane lane4 = new Lane(frame, LaneType.TOPBOTTOM_LEFT);
+        Lane lane1 = new Lane(frame, LaneType.RIGHT_LEFT_LEFT,
+                carManager.getCarArrayList().stream()
+                .filter(car -> car.getMovingDir().equalsIgnoreCase("RL")).findFirst().get());
+        Lane lane2 = new Lane(frame, LaneType.RIGH_LEFT_RIGHT,
+                carManager.getCarArrayList().stream()
+                .filter(car -> car.getMovingDir().equalsIgnoreCase("LR")).findFirst().get());
+        Lane lane3 = new Lane(frame, LaneType.TOPBOTTOM_RIGHT,
+                carManager.getCarArrayList().stream()
+                .filter(car -> car.getMovingDir().equalsIgnoreCase("BT")).findFirst().get());
+        Lane lane4 = new Lane(frame, LaneType.TOPBOTTOM_LEFT,
+                carManager.getCarArrayList().stream()
+                .filter(car -> car.getMovingDir().equalsIgnoreCase("TB")).findFirst().get());
 
-
+        Data.laneMap.put("RL-L", lane1);
+        Data.laneMap.put("RL-R", lane2);
+        Data.laneMap.put("TB-R", lane3);
+        Data.laneMap.put("TB-L", lane4);
     }
 }

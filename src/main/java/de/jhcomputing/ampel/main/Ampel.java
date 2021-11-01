@@ -8,10 +8,6 @@ public class Ampel {
 
     public static void main(String[] args) {
         Ampel ampel = new Ampel();
-        ampel.init();
     }
 
-    public void init() {
-
-    }
 }

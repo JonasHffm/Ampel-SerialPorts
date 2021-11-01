@@ -1,12 +1,16 @@
 package de.jhcomputing.ampel.utils;
 
 import de.jhcomputing.ampel.obj.Car;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@Getter
+@Setter
 public class CarManager {
 
     private JFrame frame;

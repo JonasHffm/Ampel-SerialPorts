@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.swing.*;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static de.jhcomputing.ampel.obj.Trafficlight.Mode.*;
 
 @Getter
 @Setter
@@ -15,9 +19,9 @@ public class Lane {
     private Car car;
     private Trafficlight trafficlight;
 
-    public Lane(JFrame jFrame, LaneType laneType) {
+    public Lane(JFrame jFrame, LaneType laneType, Car car) {
         this.laneType = laneType;
-
+        this.car = car;
 
         switch (laneType) {
             case RIGHT_LEFT_LEFT -> {
@@ -38,6 +42,21 @@ public class Lane {
             }
         }
 
+        checkTrafficlightMode();
+    }
+
+    public void checkTrafficlightMode() {
+        Timer timer = new java.util.Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (trafficlight.getMode().equals(RED) || trafficlight.getMode().equals(RED_YELLOW)) {
+                    car.stopAtLine();
+                }else {
+                    car.driveAgain();
+                }
+            }
+        }, 0, 1);
     }
 
 }

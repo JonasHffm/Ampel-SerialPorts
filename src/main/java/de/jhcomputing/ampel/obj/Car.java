@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.swing.*;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.function.Consumer;
@@ -16,6 +17,7 @@ public class Car {
     private boolean moving;
     private java.util.Timer timer;
     private int default_X, default_Y;
+    private String movingDir = "";
 
     private final int speed = 6;
 
@@ -27,18 +29,22 @@ public class Car {
         this.default_Y = yLoc;
 
         if(dir.equalsIgnoreCase("rl")) {
+            movingDir = dir.toUpperCase(Locale.ROOT);
             this.carImage.setSize(140, 60);
             ImageIcon carImg = new ImageIcon("img/Car.png");
             this.carImage.setIcon(carImg);
         }else if(dir.equalsIgnoreCase("lr")) {
+            movingDir = dir.toUpperCase(Locale.ROOT);
             this.carImage.setSize(140, 60);
             ImageIcon carImg = new ImageIcon("img/Car3.png");
             this.carImage.setIcon(carImg);
         }else if(dir.equalsIgnoreCase("tb")) {
+            movingDir = dir.toUpperCase(Locale.ROOT);
             this.carImage.setSize(60, 140);
             ImageIcon carImg = new ImageIcon("img/Car4.png");
             this.carImage.setIcon(carImg);
         }else if(dir.equalsIgnoreCase("bt")){
+            movingDir = dir.toUpperCase(Locale.ROOT);
             this.carImage.setSize(60, 140);
             ImageIcon carImg = new ImageIcon("img/Car2.png");
             this.carImage.setIcon(carImg);
@@ -107,7 +113,34 @@ public class Car {
         carImage.repaint();
     }
 
+    public void stopAtLine() {
+        switch (movingDir) {
+            case "RL" -> {
+                if (carImage.getX() >= -10 && carImage.getX() <= 30) {
+                    stop();
+                }
+            }
+            case "LR" -> {
+                if (carImage.getX() <= 500 && carImage.getX() >= 450) {
+                    stop();
+                }
+            }
+            case "TB" -> {
+                if (carImage.getY() >= -60 && carImage.getY() <= 0) {
+                    stop();
+                }
+            }
+            case "BT" -> {
+                if (carImage.getY() <= 460 && carImage.getY() >= 400) {
+                    stop();
+                }
+            }
+        }
+    }
 
+    public void driveAgain() {
+        this.moving = true;
+    }
 
     public void stop() {
         this.moving = false;

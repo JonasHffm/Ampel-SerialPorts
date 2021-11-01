@@ -6,6 +6,8 @@ import lombok.Setter;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @Getter
 @Setter
@@ -40,6 +42,8 @@ public class Trafficlight {
         green_light.setIcon(punkt_gruen);
 
         this.frame = frame;
+
+        updateLight();
     }
 
     public void spawn(Place place) {
@@ -142,6 +146,32 @@ public class Trafficlight {
             }
         }
 
+    }
+
+    public void updateLight() {
+        Timer timer = new java.util.Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if(mode.equals(Mode.RED)) {
+                    yellow_light.setVisible(false);
+                    green_light.setVisible(false);
+                    red_light.setVisible(true);
+                }else if(mode.equals(Mode.RED_YELLOW)) {
+                    yellow_light.setVisible(true);
+                    green_light.setVisible(false);
+                    red_light.setVisible(true);
+                }else if(mode.equals(Mode.YELLOW)) {
+                    yellow_light.setVisible(true);
+                    green_light.setVisible(false);
+                    red_light.setVisible(false);
+                }else if(mode.equals(Mode.GREEN)) {
+                    yellow_light.setVisible(false);
+                    green_light.setVisible(true);
+                    red_light.setVisible(false);
+                }
+            }
+        }, 0, 10);
     }
 
     public enum Place {
