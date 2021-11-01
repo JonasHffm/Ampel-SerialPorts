@@ -4,6 +4,7 @@ import de.jhcomputing.ampel.autonom.AutonomExmaple;
 import de.jhcomputing.ampel.main.Ampel;
 import de.jhcomputing.ampel.obj.Car;
 import de.jhcomputing.ampel.obj.Lane;
+import de.jhcomputing.ampel.serial_control.SerialControl;
 import de.jhcomputing.ampel.utils.CarManager;
 import de.jhcomputing.ampel.utils.Data;
 import de.jhcomputing.ampel.utils.LaneType;
@@ -51,6 +52,9 @@ public class MainWindow {
         activateAuto.setText("Auto");
         activateAuto.addActionListener(e -> {
             if(!AutonomExmaple.autoActive) {
+                if(Ampel.data.getSerialControl() != null) {
+                    Ampel.data.getSerialControl().close();
+                }
                 Ampel.data.setAutonomExmaple(new AutonomExmaple());
                 Data.automationActive = true;
                 JOptionPane.showMessageDialog(frame, "Autonomer Modus aktiviert!");
@@ -63,7 +67,10 @@ public class MainWindow {
         activateSerial.setBounds(4, 35, 100, 25);
         activateSerial.setText("Serial");
         activateSerial.addActionListener(e -> {
+            Data.comPort = JOptionPane.showInputDialog(frame, "Welcher Port soll geöffnet werden? (Bsp.: COM1)");
             Data.automationActive = false;
+            Ampel.data.setSerialControl(new SerialControl());
+            Ampel.data.getSerialControl().start();
             JOptionPane.showMessageDialog(frame, "Serial-Modus wird in Kürze aktiviert (max. 15 Sekunden)!");
         });
 

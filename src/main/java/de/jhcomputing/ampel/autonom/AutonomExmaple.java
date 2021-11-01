@@ -3,6 +3,7 @@ package de.jhcomputing.ampel.autonom;
 import de.jhcomputing.ampel.main.Ampel;
 import de.jhcomputing.ampel.obj.Lane;
 import de.jhcomputing.ampel.obj.Trafficlight;
+import de.jhcomputing.ampel.obj.TrafficlightWalk;
 import de.jhcomputing.ampel.utils.Data;
 
 import javax.swing.*;
@@ -43,12 +44,16 @@ public class AutonomExmaple {
                             public void run() {
                                 rl_l.getTrafficlight().setMode(Trafficlight.Mode.RED);
                                 rl_r.getTrafficlight().setMode(Trafficlight.Mode.RED);
+                                rl_l.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.GREEN);
+                                rl_r.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.GREEN);
 
                                 timer.schedule(new TimerTask() {
                                     @Override
                                     public void run() {
                                         tb_l.getTrafficlight().setMode(Trafficlight.Mode.GREEN);
                                         tb_r.getTrafficlight().setMode(Trafficlight.Mode.GREEN);
+                                        tb_l.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.RED);
+                                        tb_r.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.RED);
                                     }
                                 }, 1000 * 2);
                             }
@@ -71,12 +76,16 @@ public class AutonomExmaple {
                             public void run() {
                                 tb_l.getTrafficlight().setMode(Trafficlight.Mode.RED);
                                 tb_r.getTrafficlight().setMode(Trafficlight.Mode.RED);
+                                tb_l.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.GREEN);
+                                tb_r.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.GREEN);
 
                                 timer.schedule(new TimerTask() {
                                     @Override
                                     public void run() {
                                         rl_l.getTrafficlight().setMode(Trafficlight.Mode.GREEN);
                                         rl_r.getTrafficlight().setMode(Trafficlight.Mode.GREEN);
+                                        rl_l.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.RED);
+                                        rl_r.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.RED);
                                     }
                                 }, 1000 * 2);
                             }
@@ -87,8 +96,13 @@ public class AutonomExmaple {
                     autoActive = false;
                     tb_l.getTrafficlight().setMode(Trafficlight.Mode.RED);
                     tb_r.getTrafficlight().setMode(Trafficlight.Mode.RED);
+                    tb_l.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.RED);
+                    tb_r.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.RED);
+
                     rl_l.getTrafficlight().setMode(Trafficlight.Mode.RED);
                     rl_r.getTrafficlight().setMode(Trafficlight.Mode.RED);
+                    rl_l.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.RED);
+                    rl_r.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.RED);
 
                     JOptionPane.showMessageDialog(Ampel.data.getMainWindow().getFrame(), "Serial-Modus aktiv!");
 

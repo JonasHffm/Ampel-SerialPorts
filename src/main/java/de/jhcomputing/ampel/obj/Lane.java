@@ -18,6 +18,7 @@ public class Lane {
     private LaneType laneType;
     private Car car;
     private Trafficlight trafficlight;
+    private TrafficlightWalk trafficlightWalk;
 
     public Lane(JFrame jFrame, LaneType laneType, Car car) {
         this.laneType = laneType;
@@ -25,22 +26,36 @@ public class Lane {
 
         switch (laneType) {
             case RIGHT_LEFT_LEFT -> {
-                this.trafficlight = new Trafficlight(jFrame, 430, 50);
-                trafficlight.spawn(Trafficlight.Place.RIGHT);
-            }
-            case RIGH_LEFT_RIGHT -> {
                 this.trafficlight = new Trafficlight(jFrame, 100, 280);
                 trafficlight.spawn(Trafficlight.Place.LEFT);
+
+                this.trafficlightWalk = new TrafficlightWalk(jFrame, 423, 242);
+                this.trafficlightWalk.spawn();
+            }
+            case RIGH_LEFT_RIGHT -> {
+                this.trafficlight = new Trafficlight(jFrame, 430, 50);
+                trafficlight.spawn(Trafficlight.Place.RIGHT);
+
+                this.trafficlightWalk = new TrafficlightWalk(jFrame, 170, 244);
+                this.trafficlightWalk.spawn();
             }
             case TOPBOTTOM_RIGHT -> {
                 this.trafficlight = new Trafficlight(jFrame, 410, 300);
                 trafficlight.spawn(Trafficlight.Place.BOTTOM);
+
+                this.trafficlightWalk = new TrafficlightWalk(jFrame, 292, 374);
+                this.trafficlightWalk.spawn();
             }
             case TOPBOTTOM_LEFT -> {
                 this.trafficlight = new Trafficlight(jFrame, 180, 20);
                 trafficlight.spawn(Trafficlight.Place.TOP);
+
+                this.trafficlightWalk = new TrafficlightWalk(jFrame, 292, 121);
+                this.trafficlightWalk.spawn();
             }
         }
+
+
 
         checkTrafficlightMode();
     }
