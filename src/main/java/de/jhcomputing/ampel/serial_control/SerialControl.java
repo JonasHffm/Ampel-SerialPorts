@@ -159,6 +159,23 @@ public class SerialControl extends Thread{
         System.out.println("Die Verbindung wurde abgebrochen!");
     };
 
+    public void sendWalkTrafficlightCode(String trafficlight) {
+        try {
+            if(trafficlight.equals("T")) {
+                serials.get(0).write("W");
+            }else if(trafficlight.equals("R")) {
+                serials.get(0).write("X");
+            }else if(trafficlight.equals("B")) {
+                serials.get(0).write("Y");
+            }else if(trafficlight.equals("L")) {
+                serials.get(0).write("Z");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void close() {
         try {
             serials.get(0).close();

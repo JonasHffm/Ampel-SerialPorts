@@ -69,11 +69,53 @@ public class MainWindow {
         activateSerial.addActionListener(e -> {
             Data.comPort = JOptionPane.showInputDialog(frame, "Welcher Port soll geöffnet werden? (Bsp.: COM1)");
             Data.automationActive = false;
-            Ampel.data.setSerialControl(new SerialControl());
-            Ampel.data.getSerialControl().start();
             JOptionPane.showMessageDialog(frame, "Serial-Modus wird in Kürze aktiviert (max. 15 Sekunden)!");
         });
 
+        ActionListener actionButtonWalkTL = e -> {
+            JButton buttonPressed = (JButton) e.getSource();
+            System.out.println(buttonPressed.getText());
+            if(!Data.automationActive) {
+                if (buttonPressed.getText().equals("T")) {
+                    Ampel.data.getSerialControl().sendWalkTrafficlightCode("T");
+                }else if (buttonPressed.getText().equals("R")) {
+                    Ampel.data.getSerialControl().sendWalkTrafficlightCode("R");
+                }else if (buttonPressed.getText().equals("B")) {
+                    Ampel.data.getSerialControl().sendWalkTrafficlightCode("B");
+                }else if (buttonPressed.getText().equals("L")) {
+                    Ampel.data.getSerialControl().sendWalkTrafficlightCode("L");
+                }
+            }
+        };
+
+        JButton button_walk_top= new JButton();
+        button_walk_top.setText("T");
+        button_walk_top.setVisible(true);
+        button_walk_top.setBounds(381, 140, 20, 20);
+        button_walk_top.addActionListener(actionButtonWalkTL);
+
+        JButton button_walk_right= new JButton();
+        button_walk_right.setText("R");
+        button_walk_right.setVisible(true);
+        button_walk_right.setBounds(420, 170, 20, 20);
+        button_walk_right.addActionListener(actionButtonWalkTL);
+
+        JButton button_walk_left= new JButton();
+        button_walk_left.setText("L");
+        button_walk_left.setVisible(true);
+        button_walk_left.setBounds(172, 350, 20, 20);
+        button_walk_left.addActionListener(actionButtonWalkTL);
+
+        JButton button_walk_bottom= new JButton();
+        button_walk_bottom.setText("B");
+        button_walk_bottom.setVisible(true);
+        button_walk_bottom.setBounds(205, 388, 20, 20);
+        button_walk_bottom.addActionListener(actionButtonWalkTL);
+
+        this.frame.add(button_walk_right);
+        this.frame.add(button_walk_top);
+        this.frame.add(button_walk_left);
+        this.frame.add(button_walk_bottom);
         this.frame.add(activateAuto);
         this.frame.add(activateSerial);
         this.frame.add(background);

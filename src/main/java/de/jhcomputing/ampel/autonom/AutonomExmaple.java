@@ -4,6 +4,7 @@ import de.jhcomputing.ampel.main.Ampel;
 import de.jhcomputing.ampel.obj.Lane;
 import de.jhcomputing.ampel.obj.Trafficlight;
 import de.jhcomputing.ampel.obj.TrafficlightWalk;
+import de.jhcomputing.ampel.serial_control.SerialControl;
 import de.jhcomputing.ampel.utils.Data;
 
 import javax.swing.*;
@@ -104,6 +105,8 @@ public class AutonomExmaple {
                     rl_l.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.RED);
                     rl_r.getTrafficlightWalk().setMode(TrafficlightWalk.Mode.RED);
 
+                    Ampel.data.setSerialControl(new SerialControl());
+                    Ampel.data.getSerialControl().start();
                     JOptionPane.showMessageDialog(Ampel.data.getMainWindow().getFrame(), "Serial-Modus aktiv!");
 
                     this.cancel();
